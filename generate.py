@@ -20,8 +20,7 @@ for font in fonts:
             word = ""
             while len(word) < 8:
                 wllen = subprocess.check_output(["wc", "-l", wordlist]).decode("utf-8").strip().split()[0]
-                # Unsafe
-                newword = subprocess.check_output(["bash", "-c", "head -n " + str(random.randint(0,int(wllen))) + " " + wordlist + "|tail -n 1"]).decode("utf-8").strip()
+                newword = random.choice(subprocess.check_output(["cat", wordlist]).decode("utf-8").strip().split())
                 newword = newword[0].upper() + newword[1:]
                 if '\'' in newword:
                     continue
